@@ -29,5 +29,14 @@ namespace InvoiceGeneratorTest
             double result = invoicGenerator.CalculateFare(distance, time);
             Assert.AreEqual(result, 5);
         }
+        [Test]
+        public void givenMultipleRides_ShouldcalculateTheTotalFare()
+        {
+            Ride[] rides = { new Ride(2.0, 5),
+                             new Ride(0.1, 1),
+                            };
+            double result = invoicGenerator.calculateTotalFare(rides);
+            Assert.AreEqual(30, result);
+        }
     }
 }
