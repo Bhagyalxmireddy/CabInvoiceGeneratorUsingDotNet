@@ -35,8 +35,9 @@ namespace InvoiceGeneratorTest
             Ride[] rides = { new Ride(2.0, 5),
                              new Ride(0.1, 1),
                             };
-            double result = invoicGenerator.calculateTotalFare(rides);
-            Assert.AreEqual(30, result);
+            InvoicSummary invoiceSummary = invoicGenerator.calculateTotalFare(rides);
+            InvoicSummary expectedInvoiceSummary = new InvoicSummary(2, 30);
+            Assert.AreEqual(expectedInvoiceSummary, invoiceSummary);
         }
     }
 }

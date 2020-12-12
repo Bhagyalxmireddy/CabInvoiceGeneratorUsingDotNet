@@ -15,14 +15,14 @@ namespace CabInvoiceGenerater
             double totalFare = distance * MIN_COST_PER_KILOMETER + time * MIN_COST_PER_MINUTE;
             return Math.Max(totalFare, MIMINUM_FARE);
         }
-        public double calculateTotalFare(Ride[] rides)
+        public InvoicSummary calculateTotalFare(Ride[] rides)
         {
             double totalFare = 0;
             foreach (Ride ride in rides)
             {
                 totalFare += CalculateFare(ride.distance, ride.time);
             }
-            return totalFare;
+            return new InvoicSummary(rides.Length, totalFare);
         }
     }
 }
