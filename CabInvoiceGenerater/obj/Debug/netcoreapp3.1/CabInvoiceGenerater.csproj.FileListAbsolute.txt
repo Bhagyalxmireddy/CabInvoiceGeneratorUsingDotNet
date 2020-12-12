@@ -1,0 +1,13 @@
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.csprojAssemblyReference.cache
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.AssemblyInfo.cs
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\bin\Debug\netcoreapp3.1\CabInvoiceGenerater.exe
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\bin\Debug\netcoreapp3.1\CabInvoiceGenerater.deps.json
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\bin\Debug\netcoreapp3.1\CabInvoiceGenerater.runtimeconfig.json
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\bin\Debug\netcoreapp3.1\CabInvoiceGenerater.runtimeconfig.dev.json
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\bin\Debug\netcoreapp3.1\CabInvoiceGenerater.dll
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\bin\Debug\netcoreapp3.1\CabInvoiceGenerater.pdb
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.dll
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.pdb
+C:\Users\USER\source\repos\CabInvoiceGenerater\CabInvoiceGenerater\obj\Debug\netcoreapp3.1\CabInvoiceGenerater.genruntimeconfig.cache
