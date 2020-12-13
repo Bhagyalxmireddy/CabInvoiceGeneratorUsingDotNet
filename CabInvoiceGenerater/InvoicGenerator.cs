@@ -9,20 +9,60 @@ namespace CabInvoiceGenerater
         public const double MIN_COST_PER_KILOMETER = 10.0;
         public const int MIN_COST_PER_MINUTE = 1;
         public const double MIMINUM_FARE = 5;
-        
-        public double CalculateFare(double distance, int time)
+        double totalFare;
+
+        InvoicSummary invoicSummary = null;
+        RideRepository rideRepository = null;
+
+        public InvoicGenerator()
         {
-            double totalFare = distance * MIN_COST_PER_KILOMETER + time * MIN_COST_PER_MINUTE;
+            invoicSummary = new InvoicSummary();
+            rideRepository = new RideRepository();
+        }
+        
+        public double CalculateFare(Ride ride)
+        {
+            if (ride == null)
+            {
+                throw new InvoiceException(InvoiceException.ExceptionType.NULL_RIDES, "Ride is Invalid");
+            }
+            if (ride.distance <= 0)
+            {
+                throw new InvoiceException(InvoiceException.ExceptionType.INVALID_DISTANCE, "Distance is Invalid");
+            }
+            if (ride.time <= 0)
+            {
+                throw new InvoiceException(InvoiceException.ExceptionType.INVALID_TIME, "Time is Invalid");
+            }
+
+            double totalFare = ride.distance * MIN_COST_PER_KILOMETER + ride.time * MIN_COST_PER_MINUTE;
             return Math.Max(totalFare, MIMINUM_FARE);
         }
-        public InvoicSummary calculateTotalFare(Ride[] rides)
+
+        public double TotalFareForMultipleRides(List<Ride> rides)
         {
-            double totalFare = 0;
-            foreach (Ride ride in rides)
+            this.totalFare = 0;
+            foreach (var ride in rides)
             {
-                totalFare += CalculateFare(ride.distance, ride.time);
+                this.totalFare = totalFare + CalculateFare(ride);
             }
-            return new InvoicSummary(rides.Length, totalFare);
+            return this.totalFare;
+        }
+        public InvoiceService GetInvoiceSummary(List<Ride> rides)
+        {
+            double fare = TotalFareForMultipleRides(rides);
+            InvoiceService data = invoicSummary.GetInvoice(rides.Count, totalFare);
+            return data;
+        }
+        public void AddRides(int userId, List<Ride> rides)
+        {
+            rideRepository.Add(userId, rides);
+        }
+        public InvoiceService GetUserInvoice(int userId)
+        {
+            List<Ride> rides = rideRepository.GetRides(userId);
+            InvoiceService data = GetInvoiceSummary(rides);
+            return data;
         }
     }
 }

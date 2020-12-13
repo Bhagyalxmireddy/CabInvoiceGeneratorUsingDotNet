@@ -6,29 +6,14 @@ namespace CabInvoiceGenerater
 {
     public class InvoicSummary
     {
-        public int numOfRides;
-        public double totalFare;
-        public double averageFare;
 
-        public InvoicSummary(int numOfRides, double totalFare)
+        InvoiceService service;
+        public InvoiceService GetInvoice(int noOfRides, double totalFare)
         {
-            this.numOfRides = numOfRides;
-            this.totalFare = totalFare;
-            this.averageFare = this.totalFare / this.numOfRides;
-        }
+            double averageFare = totalFare / noOfRides;
+            service = new InvoiceService(noOfRides, totalFare, averageFare);
 
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            if (!(obj is InvoicSummary)) return false;
-            InvoicSummary inputObject = (InvoicSummary)obj;
-            return this.numOfRides == inputObject.numOfRides && 
-                                      this.totalFare == inputObject.totalFare &&
-                                      this.averageFare == inputObject.averageFare;
-        }
-        public override int GetHashCode()
-        {
-            return this.numOfRides.GetHashCode() ^ this.totalFare.GetHashCode() ^ this.averageFare.GetHashCode();
+            return service;
         }
     }
 }
