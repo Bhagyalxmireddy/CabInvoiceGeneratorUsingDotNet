@@ -6,10 +6,11 @@ namespace CabInvoiceGenerater
 {
     public class InvoicGenerator
     {
-        public const double MIN_COST_PER_KILOMETER = 10.0;
-        public const int MIN_COST_PER_MINUTE = 1;
-        public const double MIMINUM_FARE = 5;
+        readonly double MIN_COST_PER_KILOMETER = 10.0;
+        readonly int MIN_COST_PER_MINUTE = 1;
+        readonly double MIMINUM_FARE = 5;
         double totalFare;
+        RideType rideType;
 
         InvoicSummary invoicSummary = null;
         RideRepository rideRepository = null;
@@ -18,6 +19,27 @@ namespace CabInvoiceGenerater
         {
             invoicSummary = new InvoicSummary();
             rideRepository = new RideRepository();
+        }
+        public InvoicGenerator(RideType rideType)
+        {
+            this.rideType = rideType;
+
+            if (rideType.Equals(RideType.NORMAL))
+            {
+                this.MIN_COST_PER_KILOMETER = 10;
+                this.MIN_COST_PER_MINUTE = 1;
+                this.MIMINUM_FARE = 5;
+            }
+            else if (rideType.Equals(RideType.PREMIUM))
+            {
+                this.MIN_COST_PER_KILOMETER = 15;
+                this.MIN_COST_PER_MINUTE = 2;
+                this.MIMINUM_FARE = 20;
+            }
+            else
+            {
+                throw new InvoiceException(InvoiceException.ExceptionType.INVALID_RIDE_TYPE, "Ride type is Invalid");
+            }
         }
         
         public double CalculateFare(Ride ride)

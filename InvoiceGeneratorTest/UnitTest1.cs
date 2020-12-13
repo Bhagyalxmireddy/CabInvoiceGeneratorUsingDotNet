@@ -17,12 +17,22 @@ namespace InvoiceGeneratorTest
         }
 
         [Test]
-        public void givenDistanceAndTime_ShouldCalculateTheFare()
+        public void givenDistanceAndTime_ShouldRetuenNormalCalculateTheFare()
         {
             double distance = 2.0;
             int time = 5;
+            invoicGenerator = new InvoicGenerator(RideType.NORMAL);
             double result = invoicGenerator.CalculateFare(new Ride( distance, time));
             Assert.AreEqual(result, 25);
+        }
+        [Test]
+        public void givenDistanceAndTime_ShouldReturnPremiumCalculateTheFare()
+        {
+            double distance = 2.0;
+            int time = 5;
+            invoicGenerator = new InvoicGenerator(RideType.PREMIUM);
+            double result = invoicGenerator.CalculateFare(new Ride(distance, time));
+            Assert.AreEqual(result, 40);
         }
         [Test]
         public void givenMinDistnceAndMinTime_ShouldReturnMinFare()
@@ -75,8 +85,16 @@ namespace InvoiceGeneratorTest
 
             invoicGenerator.AddRides(1, rides);
             InvoiceService data = invoicGenerator.GetUserInvoice(1);
-
             Assert.IsTrue(data.numOfRides == expectedRides && data.totalFare == expectedFare && data.avgFare == expectedAverage);
+        }
+        [Test]
+        public void GivenUserId_WhenAbsent_Should_Return_CabInvoiceException()
+        {
+            invoicGenerator = new InvoicGenerator(RideType.NORMAL);
+
+            var result = Assert.Throws<InvoiceException>(() => invoicGenerator.GetUserInvoice(1));
+
+            Assert.AreEqual(InvoiceException.ExceptionType.INVALID_USER_ID, result.type);
         }
     }
 }
